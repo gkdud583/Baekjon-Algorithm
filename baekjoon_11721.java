@@ -1,7 +1,7 @@
 import java.util.*;
 
 
-class baekjon_11721{
+class baekjoon_11721{
     public static void main(String[]args){
          Scanner sc = new Scanner(System.in);
         String s = sc.nextLine();
