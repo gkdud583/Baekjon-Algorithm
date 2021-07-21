@@ -184,9 +184,7 @@ class baekjoon_12100{
 
 
         for(int i=0; i<comList.size(); i++){
-            if(comList.get(i).equals("21031")){
-                int dd = 3;
-            }
+          
            
             String combintaion[] = comList.get(i).split("");
             
