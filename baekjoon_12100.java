@@ -38,7 +38,7 @@ class baekjoon_12100{
                         int cur = list[c].get(first);
                     
                         if(size >= 2 && list[c].get(first + 1) == cur){
-                            //맨앞과 그뒤의 수를 빼서 add해서 마지막에 넣음
+                          
                             int nxt = list[c].get(first + 1);
                             list[c].remove(first);
                             list[c].remove(first);
