@@ -18,7 +18,6 @@ class Curve{
     }    
 }
 class baekjoon_15685{
-    static final int SIZE = 100;
     static HashMap<Integer,ArrayList<Integer>> SPOT_LIST = new HashMap<>();
 
     static ArrayList<Curve> CURVE_INFOS = new ArrayList<>();
