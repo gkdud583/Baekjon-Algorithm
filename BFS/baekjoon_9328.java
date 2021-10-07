@@ -12,6 +12,7 @@ class Location{
 
 class Main
 {
+    static String key;
     static int count = 0;
     static ArrayList<Location> lockedDoor;
     static char map[][];
@@ -37,7 +38,7 @@ class Main
                 }
             }
 
-            String key = sc.nextLine();
+            key = sc.nextLine();
             char keyArr[] = key.toCharArray();
             StringBuffer sortedKey = new StringBuffer();
             for(int j=0; j<keyArr.length; j++){
@@ -51,16 +52,17 @@ class Main
             boolean check[][] = new boolean[H][W];
 
             count = 0;
-
-            getBorder(queue, check, key, H, W);
-            bfs(queue, check, H, W, key);
+            getBorder(queue, check, H, W);
+            for(int j=0; j<key.length(); j++)
+                isUnlockable(key.charAt(j), queue);
+            bfs(queue, check, H, W);
             
             sb.append(count).append("\n");
 
         }
         System.out.println(sb);
     }
-    static void getBorder(Queue<Location> queue, boolean check[][], String key, int H, int W){
+    static void getBorder(Queue<Location> queue, boolean check[][], int H, int W){
         
         
         for(int i=0; i<W; i++){
@@ -75,6 +77,11 @@ class Main
                     queue.add(new Location(0, i));
                     if(map[0][i] == '$')
                         count++;
+                    
+                    else if(map[0][i] >= 'a' && map[0][i] <= 'z'){
+                        key = getKey(0, i);
+
+                    }
                     
                     
                 }
@@ -91,6 +98,10 @@ class Main
                         
                     if(map[H-1][i] == '$')
                         count++;
+                    else if(map[H-1][i] >= 'a' && map[H-1][i] <= 'z'){
+                        key = getKey(0, i);
+
+                    }
                     
 
                 }
@@ -108,6 +119,10 @@ class Main
                     queue.add(new Location(i, 0));
                     if(map[i][0] == '$')
                         count++;
+                    else if(map[i][0] >= 'a' && map[i][0] <= 'z'){
+                        key = getKey(0, i);
+
+                    }
                     
 
                 }
@@ -123,7 +138,10 @@ class Main
                     queue.add(new Location(i, W-1));
                     if(map[i][W-1] == '$')
                         count++;
-                    
+                    else if(map[i][W-1] >= 'a' && map[i][W-1] <= 'z'){
+                        key = getKey(0, i);
+
+                    }
 
                 }
 
@@ -135,7 +153,7 @@ class Main
 
     }
     
-    static void bfs(Queue<Location> queue, boolean check[][], int H, int W, String key){
+    static void bfs(Queue<Location> queue, boolean check[][], int H, int W){
         
         int dy[] = {-1,1,0,0};
         int dx[] = {0,0,-1,1};
@@ -173,7 +191,7 @@ class Main
                     }
                 }else if(map[y][x] >= 'a' && map[y][x] <= 'z'){
 
-                    key = getKey(key, y, x);
+                    key = getKey(y, x);
                     isUnlockable(map[y][x], queue);
                     check[y][x] = true;
                     queue.add(new Location(y,x));
@@ -193,7 +211,7 @@ class Main
       
 
     }
-    static String getKey(String key, int y, int x){
+    static String getKey(int y, int x){
         StringBuffer temp = new StringBuffer(key);
         if(key.indexOf(map[y][x]) == -1){
             temp.append(map[y][x]);
