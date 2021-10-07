@@ -65,33 +65,33 @@ class Main
         
         for(int i=0; i<W; i++){
             
-            if(map[0][i] != '*'){
+            if(map[0][i] != '*' && !check[0][i]){
+
+                check[0][i] = true;
                 char k = (char)(map[0][i] + 32);
                 if(map[0][i] >= 'A' && map[0][i] <= 'Z' && key.indexOf(k) == -1){
                     lockedDoor.add(new Location(0,i));
                 }else{
                     queue.add(new Location(0, i));
-                    if(!check[0][i]){
-                        check[0][i] = true;
-                        if(map[0][i] == '$')
-                            count++;
-                    }
-                    check[0][i] = true;
+                    if(map[0][i] == '$')
+                        count++;
+                    
                     
                 }
 
-            }if(map[H-1][i] != '*'){
+            }if(map[H-1][i] != '*' && !check[H-1][i]){
+                check[H-1][i] = true;
                 char k = (char)(map[H-1][i] + 32);
                 if(map[H-1][i] >= 'A' && map[H-1][i] <= 'Z' && key.indexOf(k) == -1){
                     lockedDoor.add(new Location(H-1,i));
                     
                 }else{
                     queue.add(new Location(H-1, i));
-                    if(!check[H-1][i]){
-                        check[H-1][i] = true;
-                        if(map[H-1][i] == '$')
-                            count++;
-                    }
+                    
+                        
+                    if(map[H-1][i] == '$')
+                        count++;
+                    
 
                 }
 
@@ -99,33 +99,31 @@ class Main
         }
 
         for(int i=0; i<H; i++){
-            if(map[i][0] != '*'){
+            if(map[i][0] != '*' && !check[i][0]){
+                check[i][0] = true;
                 char k = (char)(map[i][0] + 32);
                 if(map[i][0] >= 'A' && map[i][0] <= 'Z' && key.indexOf(k) == -1){
                     lockedDoor.add(new Location(i,0));
                 }else{
                     queue.add(new Location(i, 0));
-                    if(!check[i][0]){
-                        check[i][0] = true;
-                        if(map[i][0] == '$')
-                            count++;
-                    }
+                    if(map[i][0] == '$')
+                        count++;
+                    
 
                 }
                 
                 
 
-            }if(map[i][W-1] != '*'){
+            }if(map[i][W-1] != '*' && !check[i][W-1]){
+                check[i][W-1] = true;
                 char k = (char)(map[i][W-1] + 32);
                 if(map[i][W-1] >= 'A' && map[i][W-1] <= 'Z' && key.indexOf(k) == -1){
                     lockedDoor.add(new Location(i,W-1));
                 }else{
                     queue.add(new Location(i, W-1));
-                    if(!check[i][W-1]){
-                        check[i][W-1] = true;
-                        if(map[i][W-1] == '$')
-                            count++;
-                    }
+                    if(map[i][W-1] == '$')
+                        count++;
+                    
 
                 }
 
@@ -146,11 +144,12 @@ class Main
         while(!queue.isEmpty()){
             Location cur = queue.poll();
 
+            
             for(int i=0; i<4; i++){
                 int y = cur.y + dy[i];
                 int x = cur.x + dx[i];
 
-            
+                
                 if(y < 0 || x < 0 || y >= H || x >= W || map[y][x] == '*' || check[y][x])
                     continue;
                 
@@ -165,8 +164,8 @@ class Main
                     String upper = String.valueOf(map[y][x]);
                     String lower = upper.toLowerCase();
 
+                    check[y][x] = true;
                     if(key.indexOf(lower) != -1){
-                        check[y][x] = true;
                         queue.add(new Location(y,x));
 
                     }else{
