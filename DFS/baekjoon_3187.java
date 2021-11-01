@@ -1,14 +1,7 @@
 import java.util.*;
 
 
-class Edge{
-    int a;
-    int b;
-    Edge(int a, int b){
-        this.a = Math.min(a,b);
-        this.b = Math.max(a,b);
-    }
-}
+
 class baekjoon_3187{
     static final int DY[] = {-1,1,0,0};
     static final int DX[] = {0,0,-1,1};
