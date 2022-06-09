@@ -50,4 +50,3 @@ public class baekjoon_2210 {
         }
     }
 }
-​
