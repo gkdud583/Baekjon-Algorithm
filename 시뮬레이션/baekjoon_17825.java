@@ -178,9 +178,9 @@ class baekjoon_17825 {
         Node sixteen = new Node(16, false, null, nineteen);
         Node thirteen = new Node(13, false, null, sixteen);
 
-        Node eightteen = new Node(18, false, null, twenty);
+        Node eighteen = new Node(18, false, null, twenty);
         Node sixteen2 = new Node(16, false, null, eightteen);
-        Node forteen = new Node(14, false, null, sixteen2);
+        Node fourteen = new Node(14, false, null, sixteen2);
         Node twelve = new Node(12, false, null, forteen);
         Node ten = new Node(10, true, thirteen, twelve);
 
